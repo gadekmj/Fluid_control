@@ -1,12 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Fluid control PAGE1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP8266 Fluid Control System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>ESP8266 Fluid Control System</h1>
+    <button onclick="sendCommand('ON')">Turn ON</button>
+    <button onclick="sendCommand('OFF')">Turn OFF</button>
+
     <script>
         async function sendCommand(command) {
-            const url = "http://<ESP8266_IP_ADDRESS>"; // Replace with ESP8266 IP address
+            const url = "http://<ESP8266_IP_ADDRESS>"; // Replace with your ESP8266 IP address
             try {
-                const response = await fetch(url + "/control?command=" + command);
+                const response = await fetch(`${url}/control?command=${command}`);
                 if (response.ok) {
                     alert("Command sent: " + command);
                 } else {
@@ -17,10 +46,5 @@
             }
         }
     </script>
-</head>
-<body>
-    <h1>ESP8266 LED Control</h1>
-    <button onclick="sendCommand('ON')">Turn ON</button>
-    <button onclick="sendCommand('OFF')">Turn OFF</button>
 </body>
 </html>
