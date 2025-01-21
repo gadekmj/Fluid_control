@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fluid control PAGE1</title>
+    <script>
+        async function sendCommand(command) {
+            const url = "http://<ESP8266_IP_ADDRESS>"; // Replace with ESP8266 IP address
+            try {
+                const response = await fetch(url + "/control?command=" + command);
+                if (response.ok) {
+                    alert("Command sent: " + command);
+                } else {
+                    alert("Failed to send command");
+                }
+            } catch (error) {
+                alert("Error: " + error.message);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>ESP8266 LED Control</h1>
+    <button onclick="sendCommand('ON')">Turn ON</button>
+    <button onclick="sendCommand('OFF')">Turn OFF</button>
+</body>
+</html>
